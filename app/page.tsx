@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import MapView from "@/components/MapView";
 import LocationList from "@/components/LocationList";
 import SearchBar from "@/components/SearchBar";
-import { questLocations } from "@/data/quest-locations-full";
+import { questLocations } from "@/data/locations";
 import { Location } from "@/types";
 
 export default function Home() {
