@@ -11,69 +11,44 @@ export default function SponsoredListing() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 border-2 border-amber-200 rounded-xl p-6 mb-4 shadow-md hover:shadow-lg transition-shadow">
+    <div className="bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 rounded-lg p-4 mb-3 hover:shadow-md transition-shadow">
       {/* Sponsored Badge */}
-      <div className="flex items-center justify-between mb-4">
-        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-200 text-amber-900">
-          <Sparkles className="w-3 h-3 mr-1" />
-          Sponsored Listing
+      <div className="flex items-center justify-between mb-2">
+        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-orange-200 text-orange-900">
+          Sponsored result
         </span>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5">
           {[1, 2, 3, 4, 5].map((star) => (
-            <Star key={star} className="w-4 h-4 fill-amber-500 text-amber-500" />
+            <Star key={star} className="w-3.5 h-3.5 fill-orange-500 text-orange-500" />
           ))}
-          <span className="ml-1 text-sm font-semibold text-gray-700">5.0</span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="space-y-4">
-        <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">
-            Quest Diagnostics Biomarker Testing
+      <div className="flex gap-4">
+        {/* Icon/Image placeholder */}
+        <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center">
+          <Sparkles className="w-8 h-8 text-orange-600" />
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-bold text-gray-900 mb-0.5">
+            Quest Diagnostics Biomarker <br className="hidden sm:inline" />Testing by Superpower
           </h3>
-          <p className="text-lg font-semibold text-primary-700 mb-1">
-            Powered by Superpower
+          <p className="text-xs text-gray-600 mb-2">
+            Comprehensive biomarker testing • Personalized insights • Doctor-reviewed results
           </p>
-          <p className="text-gray-700 leading-relaxed">
-            Get comprehensive biomarker testing with personalized health insights, 
-            actionable recommendations, and ongoing health tracking—all from the comfort 
-            of your home or at any Quest location.
-          </p>
+          
+          {/* CTA Button */}
+          <button
+            onClick={handleClick}
+            className="inline-flex items-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-2 px-4 rounded-lg transition-all text-sm group"
+          >
+            <span>Start Testing</span>
+            <ArrowRight className="ml-1.5 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </button>
         </div>
-
-        {/* Features */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="flex items-start space-x-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary-600 mt-2 flex-shrink-0"></div>
-            <span className="text-sm text-gray-700">100+ biomarkers analyzed</span>
-          </div>
-          <div className="flex items-start space-x-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary-600 mt-2 flex-shrink-0"></div>
-            <span className="text-sm text-gray-700">Personalized health dashboard</span>
-          </div>
-          <div className="flex items-start space-x-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary-600 mt-2 flex-shrink-0"></div>
-            <span className="text-sm text-gray-700">Doctor-reviewed results</span>
-          </div>
-          <div className="flex items-start space-x-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary-600 mt-2 flex-shrink-0"></div>
-            <span className="text-sm text-gray-700">Test at any Quest location</span>
-          </div>
-        </div>
-
-        {/* CTA Button */}
-        <button
-          onClick={handleClick}
-          className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-bold py-4 px-6 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl flex items-center justify-center group"
-        >
-          <span className="text-lg">Get Started with Superpower Testing</span>
-          <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </button>
-
-        <p className="text-xs text-center text-gray-500 italic">
-          Special offer: Comprehensive health testing from $199
-        </p>
       </div>
     </div>
   );

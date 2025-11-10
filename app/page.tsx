@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import MapView from "@/components/MapView";
 import LocationList from "@/components/LocationList";
 import SearchBar from "@/components/SearchBar";
-import { questLocations } from "@/data/locations";
+import { questLocations } from "@/data/quest-locations-full";
 import { Location } from "@/types";
 
 export default function Home() {
@@ -56,40 +56,32 @@ export default function Home() {
   }, [searchQuery]);
 
   return (
-    <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-12 md:py-16">
+    <div className="flex flex-col bg-gray-50">
+      {/* Compact Header Section */}
+      <section className="bg-white border-b border-gray-200 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Find Quest Diagnostics Labs Near You
-            </h1>
-            <p className="text-xl text-primary-100 mb-8">
-              Search from {questLocations.length}+ verified locations nationwide
-            </p>
-            <SearchBar onSearch={setSearchQuery} />
+          <h1 className="text-3xl font-bold mb-4">Quest Diagnostics Locations</h1>
+          <SearchBar onSearch={setSearchQuery} />
+          <div className="mt-3 text-sm text-gray-600">
+            Showing {filteredLocations.length} locations of {questLocations.length}.{" "}
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="text-primary-600 hover:text-primary-700 underline"
+              >
+                Clear all
+              </button>
+            )}
           </div>
         </div>
       </section>
 
       {/* Results Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-4 text-sm text-gray-600">
-          Showing {filteredLocations.length} of {questLocations.length} locations
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="ml-2 text-primary-600 hover:text-primary-700 underline"
-            >
-              Clear search
-            </button>
-          )}
-        </div>
-
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Map and List Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-300px)] min-h-[600px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Location List */}
-          <div className="overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-sm">
+          <div className="h-[calc(100vh-200px)] overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-sm">
             <LocationList
               locations={filteredLocations}
               selectedLocation={selectedLocation}
@@ -98,7 +90,7 @@ export default function Home() {
           </div>
 
           {/* Map */}
-          <div className="rounded-lg overflow-hidden shadow-lg border border-gray-200 sticky top-4">
+          <div className="h-[calc(100vh-200px)] rounded-lg overflow-hidden shadow-lg border border-gray-200 sticky top-24">
             {userLocation && (
               <MapView
                 locations={filteredLocations}

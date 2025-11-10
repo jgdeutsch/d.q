@@ -18,7 +18,7 @@ export default function LocationList({
   return (
     <div className="divide-y divide-gray-200">
       {/* Sponsored Listing at the top */}
-      <div className="p-4">
+      <div className="p-3 bg-gray-50">
         <SponsoredListing />
       </div>
 
@@ -34,19 +34,19 @@ export default function LocationList({
           <div
             key={location.id}
             onClick={() => onLocationSelect(location)}
-            className={`p-4 cursor-pointer transition-colors hover:bg-gray-50 ${
-              selectedLocation?.id === location.id ? "bg-primary-50 border-l-4 border-primary-600" : ""
+            className={`p-3 cursor-pointer transition-colors hover:bg-gray-50 ${
+              selectedLocation?.id === location.id ? "bg-blue-50 border-l-4 border-blue-600" : ""
             }`}
           >
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               {/* Name and Rating */}
-              <div className="flex items-start justify-between">
-                <h3 className="font-semibold text-gray-900 text-lg leading-tight">
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="font-semibold text-gray-900 text-base leading-tight">
                   {location.name}
                 </h3>
                 {location.rating && (
-                  <div className="flex items-center gap-1 ml-2 flex-shrink-0">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  <div className="flex items-center gap-0.5 flex-shrink-0">
+                    <Star className="w-3.5 h-3.5 fill-orange-400 text-orange-400" />
                     <span className="text-sm font-medium text-gray-700">
                       {location.rating.toFixed(1)}
                     </span>
@@ -55,41 +55,18 @@ export default function LocationList({
               </div>
 
               {/* Address */}
-              <div className="flex items-start gap-2 text-sm text-gray-600">
-                <MapPin className="w-4 h-4 mt-0.5 text-gray-400 flex-shrink-0" />
-                <span>
-                  {location.address}, {location.city}, {location.state} {location.zip}
-                </span>
+              <div className="text-sm text-gray-600">
+                {location.address}, {location.city}, {location.state} {location.zip}
               </div>
-
-              {/* Phone */}
-              {location.phone && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Phone className="w-4 h-4 text-gray-400" />
-                  <a 
-                    href={`tel:${location.phone}`}
-                    className="hover:text-primary-600 transition-colors"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {location.phone}
-                  </a>
-                </div>
-              )}
 
               {/* Hours */}
               {location.hours && (
-                <div className="flex items-start gap-2 text-sm text-gray-600">
-                  <Clock className="w-4 h-4 mt-0.5 text-gray-400 flex-shrink-0" />
-                  <div>
-                    {Object.entries(location.hours).slice(0, 1).map(([day, hours]) => (
-                      <div key={day}>
-                        <span className="font-medium">{day}:</span> {hours}
-                      </div>
-                    ))}
-                    {Object.keys(location.hours).length > 1 && (
-                      <span className="text-xs text-gray-500">+ more hours</span>
-                    )}
-                  </div>
+                <div className="text-xs text-gray-500">
+                  {Object.entries(location.hours).slice(0, 1).map(([day, hours]) => (
+                    <span key={day}>
+                      {day}: {hours}
+                    </span>
+                  ))}
                 </div>
               )}
 
@@ -99,7 +76,7 @@ export default function LocationList({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors"
+                className="inline-flex items-center text-xs font-medium text-primary-600 hover:text-primary-700 transition-colors"
               >
                 Get Directions →
               </a>
